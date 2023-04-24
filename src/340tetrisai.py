@@ -1,7 +1,7 @@
 import numpy as np
 import tensorflow as tf
 
-class TetrisQLearner:
+class Agent:
     def __init__(self, state_space, action_space, alpha=0.1, gamma=0.9, epsilon=0.1, hidden_layers=[32, 32]):
         self.state_space = state_space
         self.action_space = action_space
@@ -26,10 +26,10 @@ class TetrisQLearner:
     
     def get_action(self, state):
         if np.random.random() < self.epsilon:
-            action = np.random.choice(self.action_space)
+            action = np.random.choice(self.num_actions)
         else:
             q_values = self.model.predict(np.array([state]))[0]
-            action = self.action_space[np.argmax(q_values)]
+            action = np.argmax(q_values)
         return action
     
     def update_q_table(self, state, action, reward, next_state):
