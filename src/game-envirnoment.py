@@ -27,6 +27,8 @@ class TetrisEnv(gym.Env):
 env = TetrisEnv()
 obs = env.reset()
 
+print(env)
+
 done = False
 while not done:
     action = env.action_space.sample()
